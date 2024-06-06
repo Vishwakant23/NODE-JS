@@ -22,7 +22,29 @@ const app=http.createServer((req,res)=>{
             res.write(data)
             res.end()
         }
+        if (url =="/getuser"){
+            let users= fs.readFileSync(path.join(__dirname, "user.json"), "utf-8")
+            res.writeHead(200, {"content-type" : "application/json"})
+            res.write(users)
+            res.end()
+        }
+      
     }
+    if(method=="POST"){
+        if(url=="/user"){
+            req.on("data", (data)=>{
+                let user=JSON.parse(data.toString())
+                // console.log(user);
+                let users=JSON.parse(fs.readFileSync(path.join(__dirname, "user.json"), "utf-8"))
+                users.push(user)
+                fs.writeFileSync(path.join(__dirname, "user.json"), JSON.stringify(users))
+                res.writeHead(201, {"content-type": "application/json"})
+                res.write(JSON.stringify({message: "Data stored successfully"}))
+                res.end()
+            })
+        }
+    }
+
 })
 
 app.listen(PORT, hostName,()=>{
