@@ -1,0 +1,37 @@
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 70px;
+    color: white;
+    background-color: black;
+}
+.logo>img{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px black;
+}
+.links{
+ width: 50%;
+ display: flex;
+ justify-content: space-evenly;
+}
+.links>a{
+    font-size: 24px;
+    color: coral;
+    text-decoration: none;
+    cursor: pointer;
+}
+.login button{
+    padding: 10px 20px;
+    background-color: brown;
+    color: azure;
+    font-size: 20px;
+    cursor: pointer;
+
+}
+.login button:hover{
+    background-color: aquamarine;
+    color: chocolate;
+}

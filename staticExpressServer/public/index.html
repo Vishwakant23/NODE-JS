@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/Navbar.css">
+</head>
+<body>
+   
+  <nav>
+    <div class="logo">
+        <img src="./images/car.avif" alt="">
+    </div>
+  <div class="links">
+    <a href="./index.html">Home</a>
+    <a href="./pages/about.html">About</a>
+    <a href="./pages/contact.html">contact</a>
+  </div>
+  <div class="login">
+    <a href="./pages/login.html"><button>login</button></a>
+  </div>
+  </nav>
+  <h1>Hey whtsup!!</h1>
+  <button id="getBtn">Post student</button>
+  <button id="postBtn">Get student</button>
+  <script>
+    let getBtn = document.getElementById("getBtn")
+    let postBtn = document.getElementById("postBtn")
+    let student={ name: "ABC", mobile: 6372955165, email:"a@g.com" }
+
+    postBtn.addEventListener("click",async () => {
+        let response =await fetch("/poststudent",{
+          method:"post",
+          headers: { "content-type": "application/json" },
+          body:JSON.stringify(student)
+        })
+        let data = await response.json()
+        console.log(data);
+    })
+    getBtn.addEventListener("click", () =>{
+      fetch("/getstudent").then(res => res.json())
+      .then(data => console.log(data).catch(err => console.log(err)))
+    })
+  </script>
+
+</body>
+</html>  
